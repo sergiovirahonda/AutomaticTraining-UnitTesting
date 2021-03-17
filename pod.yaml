@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gke-unit-testing
+spec:
+  backoffLimit: 2
+  activeDeadlineSeconds: 1800
+  containers:
+  - name: unit-testing
+    image: gcr.io/automatictrainingcicd/unit-testing:latest
+  restartPolicy: OnFailure
