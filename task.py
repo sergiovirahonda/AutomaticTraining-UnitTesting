@@ -149,10 +149,10 @@ def api_test():
             sys.exit(0)
         else:
             app.logger.info('Testing stage has ended wrong. Check the GCP logs for more information.')
-            return abort(400, 'Error when testing', custom='1')
+            sys.exit(1)
     except Exception as e:
         app.logger.info('Testing stage crashed with an exception: '+str(e)+'. Check the GCP logs for more information.')
-        return abort(400, 'Exception', custom='2')
+        sys.exit(1)
 
 
 if __name__ == '__main__':
