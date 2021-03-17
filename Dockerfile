@@ -13,6 +13,8 @@ RUN mv /root/AutomaticTraining-UnitTesting/task.py /task.py
 RUN mv /root/AutomaticTraining-UnitTesting/email_notifications.py /email_notifications.py
 RUN mv /root/AutomaticTraining-UnitTesting/TEST_IMAGE.jpg /TEST_IMAGE.jpg
 
+RUN ls
+
 EXPOSE 5000
 
 ENTRYPOINT ["python","task.py"]
