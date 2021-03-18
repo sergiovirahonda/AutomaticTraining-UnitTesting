@@ -4,8 +4,8 @@ metadata:
   name: gke-unit-testing
 spec:
   backoffLimit: 1
-  activeDeadlineSeconds: 600
-  ttlSecondsAfterFinished: 60
+  activeDeadlineSeconds: 300
+  ttlSecondsAfterFinished: 15
   template:
     spec:
       containers:
