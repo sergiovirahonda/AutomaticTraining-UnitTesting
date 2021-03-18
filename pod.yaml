@@ -1,46 +1,16 @@
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: gke-api
-  labels:
-    app: api
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: api
-  template:
-    metadata:
-      labels:
-        app: api
-    spec:
-      containers:
-        - name: api
-          image: gcr.io/automatictrainingcicd/prediction-api:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 5000
-          env:
-            - name: gmail_password
-              valueFrom:
-                secretKeyRef:
-                  name: gmail-secrets
-                  key: gmail_password
-            - name: email_address
-              value: svirahonda@gmail.com
-
----
 apiVersion: v1
-kind: Service
+kind: Pod
 metadata:
-  name: gke-api
-  labels:
-    app: api
+  name: gke-unit-testing
 spec:
-  ports:
-  - port: 5000
-    protocol: TCP
-  selector:
-    app: api
-  type: LoadBalancer
+  containers:
+  - name: unit-testing
+    image: gcr.io/automatictrainingcicd/unit-testing:latest
+    env:
+      - name: gmail_password
+        valueFrom:
+          secretKeyRef:
+            name: gmail-secrets
+            key: gmail_password
+      - name: email_address
+        value: svirahonda@gmail.com
