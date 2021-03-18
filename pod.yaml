@@ -1,16 +1,21 @@
-apiVersion: v1
-kind: Pod
+apiVersion: batch/v1
+kind: Job
 metadata:
   name: gke-unit-testing
 spec:
-  containers:
-  - name: unit-testing
-    image: gcr.io/automatictrainingcicd/unit-testing:latest
-    env:
-      - name: gmail_password
-        valueFrom:
-          secretKeyRef:
-            name: gmail-secrets
-            key: gmail_password
-      - name: email_address
-        value: svirahonda@gmail.com
+  backoffLimit: 1
+  activeDeadlineSeconds: 600
+  template:
+    spec:
+      containers:
+      - name: unit-testing
+        image: gcr.io/automatictrainingcicd/unit-testing:latest
+        env:
+          - name: gmail_password
+            valueFrom:
+              secretKeyRef:
+                name: gmail-secrets
+                key: gmail_password
+          - name: email_address
+            value: svirahonda@gmail.com
+      restartPolicy: Never

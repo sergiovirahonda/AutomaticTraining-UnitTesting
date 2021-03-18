@@ -7,7 +7,7 @@ sender = 'svirahonda@gmail.com'
 receiver = ['svirahonda@gmail.com'] #replace this by the owner's email address
 smtp_provider = 'smtp.gmail.com'
 smtp_port = 587
-smtp_account = os.getenv("email_address") #replace this by your stmp account email address
+smtp_account = os.getenv("email_address")
 smtp_password = os.getenv("gmail_password")
 # -----------------------------------------------------------------------------------------------
 
