@@ -146,15 +146,15 @@ def api_test():
         prediction = int(result['message'])
         if (prediction == 0) or (prediction == 1) or (prediction == 2):
             app.logger.info('Testing stage has ended successfully. Shutting down container. Check the GCP logs for more information.')
-            #email_notifications.send_update('Testing stage has ended successfully. Shutting down container. Check the GCP logs for more information.')
+            email_notifications.send_update('Testing stage has ended successfully. Shutting down container. Check the GCP logs for more information.')
             sys.exit(0)
         else:
             app.logger.info('Testing stage has crashed. Check the GCP logs for more information.')
-            #email_notifications.send_update('Testing stage has crashed. Check the GCP logs for more information.')
+            email_notifications.send_update('Testing stage has crashed. Check the GCP logs for more information.')
             sys.exit(1)
     except Exception as e:
         app.logger.info('Testing stage crashed with an exception: '+str(e)+'. Check the GCP logs for more information.')
-        #email_notifications.exception('Testing stage crashed with an exception: '+str(e)+'. Check the GCP logs for more information.')
+        email_notifications.exception('Testing stage crashed with an exception: '+str(e)+'. Check the GCP logs for more information.')
         sys.exit(1)
 
 
